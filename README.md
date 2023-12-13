@@ -1,2 +1,7 @@
-# dnd-monster-search
-Search for a monster using D&amp;D API
+# D&D Monster Search 
+
+To start server run: 
+
+`npm i`
+
+`nodemon index.js`
