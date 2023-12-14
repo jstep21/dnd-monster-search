@@ -35,7 +35,7 @@ app.post("/monster-search", async (req, res) => {
             try {
                 const monsterResponse = await axios.get(API_URL + matchedMonster.url)
                 const monsterData = monsterResponse.data;
-                console.log(monsterData)
+                console.log(monsterData);
                 res.render("index.ejs", {
                     data: monsterData
                 });

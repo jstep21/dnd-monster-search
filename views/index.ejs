@@ -6,15 +6,26 @@
     <link rel="stylesheet" href="styles/styles.css" />
     <title>Monster Search</title>
 
-    <!-- <% if (locals.data) { %>
-    <style type="text/css">
-      .monster-result {
-        background-image: url("https://dnd5eapi.co<%=data.image%>");
-        height: 100%;
-        background-size: cover;
-      }
-    </style>
-    <% } %> -->
+    <% if (locals.data) { %>
+      <% if (data.image) { %>
+        <style type="text/css">
+          .monster-result {
+            background-image: url("https://dnd5eapi.co<%=data.image%>");
+            height: 100%;
+            background-size: cover;
+          }
+        </style>
+      <% } else { %>
+        <style type="text/css">
+          .monster-result {
+            background-image: url("images/dnd-art.jpg");
+            height: 100%;
+            background-size: cover;
+          }
+      
+        </style>
+      <% } %>
+    <% } %>
   </head>
   <body>
     
@@ -23,7 +34,12 @@
         <div id="monsterResult" class="monster-result">
             <!-- <img src="https://dnd5eapi.co<%=data.image%>" alt=""> -->
             <h2><%= data.name %></h2>
+
+            <% if (!data.desc) { %>
+              <p> Description not available</p>
+            <% } else { %>
             <p><strong>Description:</strong><%= data.desc %></p>
+            <% } %>
 
             <h3 class="list-heading">Characteristics: </h3>
             <ul>
@@ -33,6 +49,7 @@
               <li>Typical Alignment: <%= data.alignment %></li>
               <li>Languages: <%= data.languages %></li>
             </ul>
+
             <div class="container" id="monster-stats">
               <div id="attr">Strength: <%= data.strength %></div>
               <div id="attr">Dexterity: <%= data.dexterity %></div>
@@ -41,6 +58,20 @@
               <div id="attr">Wisdom: <%= data.wisdom %></div>
               <div id="attr">Charisma: <%= data.charisma %></div>
             </div>
+
+            <h3 class="list-heading">Actions: </h3>
+            <ul>
+            <% data.actions.forEach(action => { %>
+              <li><%= action.name + ": " + action.desc %></li>
+            <% }) %>
+            </ul>
+
+            <h3 class="list-heading">Special Abilities: </h3>
+            <ul>
+            <% data.special_abilities.forEach(ability => { %>
+              <li><%= ability.name + ": " + ability.desc %></li>
+            <% }) %>
+            </ul>
         </div>
       </div>
     <% } else { %>
