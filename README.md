@@ -1,7 +1,7 @@
 # D&D Monster Search 
 
 ### Introduction
-<br>
+<hr>
 
 To start server run: 
 
